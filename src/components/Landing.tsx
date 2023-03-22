@@ -26,8 +26,10 @@ import CreateIcon from "@mui/icons-material/Create";
 import ExploreIcon from "@mui/icons-material/Explore";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useRouter } from "next/router";
 
 export default function Landing() {
+  const router = useRouter();
   return (
     <>
       {/* Landing Section */}
@@ -55,6 +57,7 @@ export default function Landing() {
                   sx={{ alignSelf: "flex-start" }}
                   variant="contained"
                   style={{ backgroundColor: "#C7E8CA", color: "black" }}
+                  onClick={() => router.push("/registerForm")}
                 >
                   Get Started
                 </Button>
