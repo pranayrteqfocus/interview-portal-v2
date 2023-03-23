@@ -64,7 +64,7 @@ function Index() {
                 </Grid>
                 <Grid item lg={6} md={6} sm={6} xs={12}>
                   <TextField
-                    label="Password-Again"
+                    label="Confirm-Password"
                     variant="outlined"
                     fullWidth
                     type={"password"}

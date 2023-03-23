@@ -33,7 +33,12 @@ export default function HeaderComponent() {
                 justifyContent: "flex-end",
               }}
             >
-              <Button variant="outlined" color="inherit">
+              <Button
+                LinkComponent={"a"}
+                href="/login"
+                variant="outlined"
+                color="inherit"
+              >
                 Login
               </Button>
             </Box>
