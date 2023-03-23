@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
   Grid,
   Typography,
@@ -11,21 +10,15 @@ import Image from "next/image";
 import React from "react";
 import { Parallax, useParallax } from "react-scroll-parallax";
 import LaptopMan from "../../public/assets/images/laptop-man.png";
-import Why from "../../public/assets/images/why-remove-bg.png";
-import Company from "../../public/assets/images/multiple-company.png";
-import Upload from "../../public/assets/images/upload.png";
 import People from "../../public/assets/images/high-chance-bgremove.png";
-// import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-// import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
-// import CoPresentIcon from '@mui/icons-material/CoPresent';
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import SpeedIcon from "@mui/icons-material/Speed";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-
 import CreateIcon from "@mui/icons-material/Create";
 import ExploreIcon from "@mui/icons-material/Explore";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Productivity from "../../public/assets/images/productivity.png";
 import { useRouter } from "next/router";
 
 export default function Landing() {
@@ -132,10 +125,10 @@ export default function Landing() {
               <Typography variant="overline" textAlign="justify">
                 At our website, we understand the challenges candidates face in
                 finding the right job opportunity, and companies face in finding
-                the right talent. That's why we've created a platform that
-                streamlines the interview process for both parties, making it
-                easier for candidates to showcase their skills and for companies
-                to find the perfect fit.
+                the right talent. That&apos;s why we&apos;ve created a platform
+                that streamlines the interview process for both parties, making
+                it easier for candidates to showcase their skills and for
+                companies to find the perfect fit.
               </Typography>
             </Box>
           </Grid>
@@ -288,6 +281,43 @@ export default function Landing() {
         </Typography>
       </Box>
       {/* Quotes Section Ends */}
+      {/* Get Started */}
+      <Box
+        display={"flex"}
+        flexDirection="column"
+        justifyContent={"center"}
+        alignItems="center"
+        sx={{ background: "#FFF" }}
+      >
+        <Box p={3}>
+          <Typography variant="h2" align="center">
+            Get Ready to Streamline your interviews, streamline your hiring.
+            with our Interview Portal.
+          </Typography>
+        </Box>
+        <Box>
+          <Button
+            size="large"
+            sx={{ padding: 1 }}
+            color="warning"
+            variant="contained"
+            LinkComponent={"a"}
+            href="/registerForm"
+          >
+            Get Started
+          </Button>
+        </Box>
+        <Box>
+          <Image alt="" src={Productivity} width={"1000"} />
+        </Box>
+      </Box>
+      {/* Get Started End */}
+
+      {/* Footer */}
+      <Box p={4}>
+        <Typography textAlign={"center"}>© 2023 by Interview Portal</Typography>
+      </Box>
+      {/* Footer End */}
     </>
   );
 }
