@@ -10,7 +10,7 @@ import Image from "next/image";
 import React from "react";
 import { Parallax, useParallax } from "react-scroll-parallax";
 import LaptopMan from "../../public/assets/images/laptop-man.png";
-import People from "../../public/assets/images/high-chance-bgremove.png";
+import People from "../../public/assets/images/employee-with-laptop.png";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import SpeedIcon from "@mui/icons-material/Speed";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -63,7 +63,7 @@ export default function Landing() {
                 top={100}
               >
                 <Box
-                  sx={{ backgroundColor: "#C7E8CA", Width: 150 }}
+                  sx={{ Width: 150 }}
                   display={"flex"}
                   p={2}
                   borderRadius={2}
@@ -71,12 +71,16 @@ export default function Landing() {
                   alignItems={"center"}
                 >
                   <CloudUploadIcon />
-                  <Typography variant="subtitle1" pl={2}>
+                  <Typography
+                    textTransform={"uppercase"}
+                    variant="subtitle1"
+                    pl={2}
+                  >
                     Convenience
                   </Typography>
                 </Box>
                 <Box
-                  sx={{ backgroundColor: "#C7E8CA", Width: 150 }}
+                  sx={{ Width: 150 }}
                   display={"flex"}
                   p={2}
                   borderRadius={2}
@@ -84,12 +88,16 @@ export default function Landing() {
                   alignItems={"center"}
                 >
                   <SpeedIcon />
-                  <Typography variant="subtitle1" pl={2}>
+                  <Typography
+                    textTransform={"uppercase"}
+                    variant="subtitle1"
+                    pl={2}
+                  >
                     Efficiency
                   </Typography>
                 </Box>
                 <Box
-                  sx={{ backgroundColor: "#C7E8CA", Width: 150 }}
+                  sx={{ Width: 150 }}
                   display={"flex"}
                   p={2}
                   borderRadius={2}
@@ -97,7 +105,11 @@ export default function Landing() {
                   alignItems={"center"}
                 >
                   <VisibilityIcon />
-                  <Typography variant="subtitle1" pl={2}>
+                  <Typography
+                    textTransform={"uppercase"}
+                    variant="subtitle1"
+                    pl={2}
+                  >
                     Exposure
                   </Typography>
                 </Box>

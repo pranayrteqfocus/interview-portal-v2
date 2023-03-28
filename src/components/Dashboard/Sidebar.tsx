@@ -40,7 +40,6 @@ export default function Sidebar(props: Props) {
   const drawer = (
     <div>
       <Toolbar />
-      <Divider />
       <List>
         <ListItem disablePadding>
           <ListItemButton>
