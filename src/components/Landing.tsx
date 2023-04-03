@@ -2,43 +2,48 @@ import {
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
   Grid,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { Parallax, useParallax } from "react-scroll-parallax";
 import LaptopMan from "../../public/assets/images/laptop-man.png";
-import Why from "../../public/assets/images/why-remove-bg.png";
-import Company from "../../public/assets/images/multiple-company.png";
-import Upload from "../../public/assets/images/upload.png";
-import People from "../../public/assets/images/high-chance-bgremove.png";
-// import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-// import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
-// import CoPresentIcon from '@mui/icons-material/CoPresent';
+import People from "../../public/assets/images/employee-with-laptop.png";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import SpeedIcon from "@mui/icons-material/Speed";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-
 import CreateIcon from "@mui/icons-material/Create";
 import ExploreIcon from "@mui/icons-material/Explore";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Productivity from "../../public/assets/images/productivity.png";
 import { useRouter } from "next/router";
+import { isEmpty } from "lodash";
 
 export default function Landing() {
   const router = useRouter();
+  useEffect(() => {
+    if (
+      window.location !== undefined &&
+      !isEmpty(localStorage.getItem("username"))
+    ) {
+      router.push("/dashboard");
+    }
+  }, []);
   return (
     <>
       {/* Landing Section */}
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box
+        className="landingBody"
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
         <Grid container spacing={2}>
           <Grid item lg={7} md={6} sm={6} xs={12}>
             <Box padding={"5rem"} paddingTop="8rem">
               <Box>
-                <Typography variant="h2">Interview Portal</Typography>
+                <Typography variant="h2">Talent Steam</Typography>
                 <Typography fontSize={"20px"} textAlign="justify" py={"10px"}>
                   Welcome to our website! We offer a unique platform for
                   candidates to give interviews and for clients to find the
@@ -70,7 +75,7 @@ export default function Landing() {
                 top={100}
               >
                 <Box
-                  sx={{ backgroundColor: "#C7E8CA", Width: 150 }}
+                  sx={{ Width: 150 }}
                   display={"flex"}
                   p={2}
                   borderRadius={2}
@@ -78,12 +83,16 @@ export default function Landing() {
                   alignItems={"center"}
                 >
                   <CloudUploadIcon />
-                  <Typography variant="subtitle1" pl={2}>
+                  <Typography
+                    textTransform={"uppercase"}
+                    variant="subtitle1"
+                    pl={2}
+                  >
                     Convenience
                   </Typography>
                 </Box>
                 <Box
-                  sx={{ backgroundColor: "#C7E8CA", Width: 150 }}
+                  sx={{ Width: 150 }}
                   display={"flex"}
                   p={2}
                   borderRadius={2}
@@ -91,12 +100,16 @@ export default function Landing() {
                   alignItems={"center"}
                 >
                   <SpeedIcon />
-                  <Typography variant="subtitle1" pl={2}>
+                  <Typography
+                    textTransform={"uppercase"}
+                    variant="subtitle1"
+                    pl={2}
+                  >
                     Efficiency
                   </Typography>
                 </Box>
                 <Box
-                  sx={{ backgroundColor: "#C7E8CA", Width: 150 }}
+                  sx={{ Width: 150 }}
                   display={"flex"}
                   p={2}
                   borderRadius={2}
@@ -104,7 +117,11 @@ export default function Landing() {
                   alignItems={"center"}
                 >
                   <VisibilityIcon />
-                  <Typography variant="subtitle1" pl={2}>
+                  <Typography
+                    textTransform={"uppercase"}
+                    variant="subtitle1"
+                    pl={2}
+                  >
                     Exposure
                   </Typography>
                 </Box>
@@ -132,10 +149,10 @@ export default function Landing() {
               <Typography variant="overline" textAlign="justify">
                 At our website, we understand the challenges candidates face in
                 finding the right job opportunity, and companies face in finding
-                the right talent. That's why we've created a platform that
-                streamlines the interview process for both parties, making it
-                easier for candidates to showcase their skills and for companies
-                to find the perfect fit.
+                the right talent. That&apos;s why we&apos;ve created a platform
+                that streamlines the interview process for both parties, making
+                it easier for candidates to showcase their skills and for
+                companies to find the perfect fit.
               </Typography>
             </Box>
           </Grid>
@@ -288,6 +305,43 @@ export default function Landing() {
         </Typography>
       </Box>
       {/* Quotes Section Ends */}
+      {/* Get Started */}
+      <Box
+        display={"flex"}
+        flexDirection="column"
+        justifyContent={"center"}
+        alignItems="center"
+        sx={{ background: "#FFF" }}
+      >
+        <Box p={3}>
+          <Typography variant="h2" align="center">
+            Get Ready to Streamline your interviews, streamline your hiring.
+            with our Interview Portal.
+          </Typography>
+        </Box>
+        <Box>
+          <Button
+            size="large"
+            sx={{ padding: 1 }}
+            color="warning"
+            variant="contained"
+            LinkComponent={"a"}
+            href="/registerForm"
+          >
+            Get Started
+          </Button>
+        </Box>
+        <Box>
+          <Image alt="" src={Productivity} width={"1000"} />
+        </Box>
+      </Box>
+      {/* Get Started End */}
+
+      {/* Footer */}
+      <Box p={4}>
+        <Typography textAlign={"center"}>© 2023 by Interview Portal</Typography>
+      </Box>
+      {/* Footer End */}
     </>
   );
 }
