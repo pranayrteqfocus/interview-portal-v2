@@ -1,25 +1,37 @@
 import {
   Box,
-  Button,
   Card,
   CardActions,
   CardContent,
   Checkbox,
   FormControlLabel,
-  FormHelperText,
   TextField,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WomanStanding from "../../../public/assets/images/woman-standing.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { getUser } from "../api/usesrs/users";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { loggedIn } from "@/store/reducers";
+import { LoadingButton } from "@mui/lab";
+import { isEmpty } from "lodash";
+
 function Index() {
   const router = useRouter();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (
+      window.location !== undefined &&
+      !isEmpty(localStorage.getItem("username"))
+    ) {
+      router.push("/dashboard");
+    }
+  }, []);
   const [message, setMessage] = useState("");
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
@@ -35,19 +47,21 @@ function Index() {
       password: "",
     },
     validationSchema: SignupSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { setSubmitting }) => {
+      setSubmitting(true);
       const result = await getUser(values);
-      console.log("Result", result);
       if (result.status === 200) {
-        localStorage.setItem("userInfo", result.data);
+        dispatch(loggedIn(result.data));
+        localStorage.setItem("username", result?.data?.username);
         router.push("/dashboard");
       } else {
         setMessage(result.data);
+        setSubmitting(false);
       }
     },
   });
   return (
-    <Box>
+    <Box className="landingBody">
       <Box
         display={"flex"}
         height={"100vh"}
@@ -56,7 +70,7 @@ function Index() {
         alignItems={"center"}
         textAlign="center"
       >
-        <Card elevation={5} sx={{ borderRadius: 5, padding: 3 }}>
+        <Card elevation={5} sx={{ borderRadius: 5, padding: 3, zIndex: 1 }}>
           <CardContent sx={{ padding: 3 }}>
             <Typography mb={1} variant="h3">
               Login
@@ -100,19 +114,22 @@ function Index() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button
+            <LoadingButton
+              loading={formik.isSubmitting}
+              loadingPosition="end"
               onClick={() => formik.handleSubmit()}
               type="submit"
               fullWidth
+              disabled={formik.isSubmitting}
               variant="contained"
               size="large"
             >
               Login
-            </Button>
+            </LoadingButton>
           </CardActions>
         </Card>
         <Image
-          style={{ position: "absolute", right: 10, zIndex: -1 }}
+          style={{ position: "absolute", right: 10 }}
           src={WomanStanding}
           alt=""
         />

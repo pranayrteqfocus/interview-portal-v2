@@ -1,3 +1,4 @@
+import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import Sidebar from "@/components/Dashboard/Sidebar";
 import { Box, Typography } from "@mui/material";
 import React from "react";
@@ -5,10 +6,9 @@ import React from "react";
 function Index() {
   return (
     <>
-      <Box marginX={10}>
+      <DashboardLayout>
         <Typography>Dashboard</Typography>
-      </Box>
-      <Sidebar />
+      </DashboardLayout>
     </>
   );
 }

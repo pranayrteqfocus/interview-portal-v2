@@ -16,7 +16,12 @@ export default function HeaderComponent() {
       </Head>
 
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar color="transparent" elevation={0} position="static">
+        <AppBar
+          className="landingBody"
+          color="transparent"
+          elevation={0}
+          position="static"
+        >
           <Toolbar>
             {/* <IconButton
               size="large"

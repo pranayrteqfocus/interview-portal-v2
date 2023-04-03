@@ -77,8 +77,10 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-image: url("../../public/assets/images/bg.png");
+}
 
+.landingBody {
+  background-image: url("../../public/assets/images/bg.png");
 }
 
 a {

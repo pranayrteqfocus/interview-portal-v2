@@ -19,15 +19,25 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WomanStanding from "../../../public/assets/images/woman-standing.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { createUsers, Users } from "../api/usesrs/users";
 import DatePicker from "@/components/Custom/DatePicker";
 import { useRouter } from "next/router";
+import { isEmpty } from "lodash";
+
 function Index() {
   const router = useRouter();
+  useEffect(() => {
+    if (
+      window.location !== undefined &&
+      !isEmpty(localStorage.getItem("username"))
+    ) {
+      router.push("/dashboard");
+    }
+  }, []);
 
   const SignupSchema = Yup.object().shape({
     fullName: Yup.string()
@@ -75,17 +85,16 @@ function Index() {
     },
   });
   return (
-    <>
+    <Box className="landingBody" py={3}>
       <Box
         display={"flex"}
         height={"100vh"}
-        my={3}
         flexDirection="row"
         justifyContent="center"
         alignItems={"center"}
         textAlign="center"
       >
-        <Card elevation={5} sx={{ width: "40%", borderRadius: 5 }}>
+        <Card elevation={5} sx={{ width: "40%", borderRadius: 5, zIndex: 1 }}>
           <CardContent sx={{ padding: 3 }}>
             <Typography variant="h2">Register</Typography>
             <Typography sx={{ mb: 1.5 }} color="ActiveBorder">
@@ -203,10 +212,10 @@ function Index() {
                       label="Candidate"
                     />
                     <FormControlLabel
-                      value="Employee"
+                      value="employer"
                       name="accountType"
                       control={<Radio />}
-                      label="Employee"
+                      label="employer"
                     />
                   </RadioGroup>
                 </FormControl>
@@ -235,12 +244,12 @@ function Index() {
           </CardActions>
         </Card>
         <Image
-          style={{ position: "absolute", right: 10, zIndex: -1 }}
+          style={{ position: "absolute", right: 10 }}
           src={WomanStanding}
           alt=""
         />
       </Box>
-    </>
+    </Box>
   );
 }
 

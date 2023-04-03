@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { Parallax, useParallax } from "react-scroll-parallax";
 import LaptopMan from "../../public/assets/images/laptop-man.png";
 import People from "../../public/assets/images/employee-with-laptop.png";
@@ -20,18 +20,30 @@ import ScheduleIcon from "@mui/icons-material/Schedule";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Productivity from "../../public/assets/images/productivity.png";
 import { useRouter } from "next/router";
+import { isEmpty } from "lodash";
 
 export default function Landing() {
   const router = useRouter();
+  useEffect(() => {
+    if (
+      window.location !== undefined &&
+      !isEmpty(localStorage.getItem("username"))
+    ) {
+      router.push("/dashboard");
+    }
+  }, []);
   return (
     <>
       {/* Landing Section */}
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box
+        className="landingBody"
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
         <Grid container spacing={2}>
           <Grid item lg={7} md={6} sm={6} xs={12}>
             <Box padding={"5rem"} paddingTop="8rem">
               <Box>
-                <Typography variant="h2">Interview Portal</Typography>
+                <Typography variant="h2">Talent Steam</Typography>
                 <Typography fontSize={"20px"} textAlign="justify" py={"10px"}>
                   Welcome to our website! We offer a unique platform for
                   candidates to give interviews and for clients to find the
